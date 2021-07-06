@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 优先配置文件中的属性，其次才是property元素指定的属性 -->
+    <properties resource="mybatis-property.properties">
+        <!--        <property name="username" value="root"/>-->
+        <!--        <property name="password" value="123456"/>-->
+        <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/> <!-- 启用默认值特性 -->
+    </properties>
+
+    <!-- 全局配置 -->
+    <settings>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.jonas.dao.domain.User" alias="User"/>
+    </typeAliases>
+
+    <!-- 每个 SqlSessionFactory 实例只能选择一种环境，即每个数据库对应一个 SqlSessionFactory 实例 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username:root}"/>
+                <property name="password" value="${password:123456}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- mapping文件路径配置 -->
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>
