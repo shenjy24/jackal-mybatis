@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.math.BigInteger;
 
 public class AppTest {
 
@@ -56,6 +57,20 @@ public class AppTest {
             UserMapper userMapper = session.getMapper(UserMapper.class);
             User user = userMapper.getUser(1);
             System.out.println(user);
+        }
+    }
+
+    @Test
+    public void testUpdateUserByMapper() {
+        //创建session实例
+        try (SqlSession session = sqlSessionFactory.openSession()) {
+            //映射器实例的最合适的作用域是方法作用域，映射器实例并不需要被显式地关闭
+            UserMapper userMapper = session.getMapper(UserMapper.class);
+            User user = userMapper.getUser(1);
+            user.setScore(new BigInteger("112926528800000000000000000000000000000000000002319739038520784315200000002460000000246246"));
+            user.setUtime(System.currentTimeMillis());
+            userMapper.updateUser(user);
+            session.commit();
         }
     }
 }

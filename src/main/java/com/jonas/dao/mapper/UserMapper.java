@@ -5,4 +5,6 @@ import com.jonas.dao.domain.User;
 public interface UserMapper {
 
     User getUser(int id);
+
+    void updateUser(User user);
 }

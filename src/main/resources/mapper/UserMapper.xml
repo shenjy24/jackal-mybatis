@@ -6,7 +6,7 @@
         <result property="name" column="user_name"/>
         <result property="age" column="user_age"/>
         <result property="status" column="user_status"/>
-        <result property="score" column="user_score"/>
+        <result property="score" column="user_score" javaType="java.math.BigInteger"/>
         <result property="utime" column="utime"/>
         <result property="ctime" column="ctime"/>
     </resultMap>
@@ -14,4 +14,9 @@
     <select id="getUser" parameterType="int" resultMap="userResult">
         select * from `user` where `user_id`=#{id}
     </select>
+
+    <update id="updateUser" parameterType="com.jonas.dao.domain.User">
+        update `user` set `user_score` = #{score,typeHandler=com.jonas.dao.type.ScoreTypeHandler}, `utime` = #{utime}
+        where `user_id` = #{id}
+    </update>
 </mapper>
