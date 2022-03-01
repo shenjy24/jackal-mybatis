@@ -2,11 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <!-- 优先配置文件中的属性，其次才是property元素指定的属性 -->
-    <properties resource="mybatis-property.properties">
-        <!--        <property name="username" value="root"/>-->
-        <!--        <property name="password" value="123456"/>-->
-        <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/> <!-- 启用默认值特性 -->
-    </properties>
+<!--    <properties resource="mybatis-property.properties">
+        &lt;!&ndash;        <property name="username" value="root"/>&ndash;&gt;
+        &lt;!&ndash;        <property name="password" value="123456"/>&ndash;&gt;
+        <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/> &lt;!&ndash; 启用默认值特性 &ndash;&gt;
+    </properties>-->
 
     <!-- 全局配置 -->
     <settings>
@@ -22,10 +22,10 @@
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="${driver}"/>
-                <property name="url" value="${url}"/>
-                <property name="username" value="${username:root}"/>
-                <property name="password" value="${password:123456}"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/local"/>
+                <property name="username" value="root"/>
+                <property name="password" value="123456"/>
             </dataSource>
         </environment>
     </environments>
